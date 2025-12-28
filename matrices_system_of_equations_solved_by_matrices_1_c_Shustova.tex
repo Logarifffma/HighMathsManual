@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1.5cm}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+\begin{document}
+
+% ========== НАЧАЛО ЗАДАЧИ ==========
+\section*{Задача}
+Исследовать систему линейных уравнений и найти её решение:
+
+\[
+\begin{cases} 
+4x + 3y = 4 \\
+2x + 2y - 2z = 0 \\
+5x + 3y + z = -2 
+\end{cases}
+\]
+
+\subsection*{Решение}
+Расширенная матрица системы \((A|B)\):
+\[
+(A|B) =
+\left( \begin{array}{ccc|c}
+4 & 3 & 0 & 4 \\
+2 & 2 & -2 & 0 \\
+5 & 3 & 1 & -2
+\end{array} \right)
+\]
+
+\textbf{Приведём матрицу к ступенчатому виду элементарными преобразованиями строк.}
+
+1. Поменяем местами I и II строки для более удобных вычислений
+Получаем:
+\[
+\left( \begin{array}{ccc|c}
+2 & 2 & -2 & 0 \\
+4 & 3 & -0 & 4 \\
+5 & 3 & 1 & -2
+\end{array} \right)
+\]
+
+2. 
+\[
+\text{II} \rightarrow \text{II} - 2 \cdot \text{II}
+\]
+\[
+\text{III} \rightarrow 2 \cdot \text{II} - 5 \cdot \text{III}
+\]
+Получаем:
+\[
+\left( \begin{array}{ccc|c}
+2 & 2 & -2 & 0 \\
+0 & -1 & 4 & 4 \\
+0 & -2 & 6 & -2
+\end{array} \right)
+\]
+
+3.
+\[
+\text{III} \rightarrow \text{III} + 2 \cdot \text{II}
+\]
+Получаем ступенчатую матрицу:
+\[
+\left( \begin{array}{ccc|c}
+2 & 2 & -2 & 0 \\
+0 & -1 & 4 & 4 \\
+0 & 0 & -2 & -10
+\end{array} \right)
+\]
+
+\textbf{Исследование системы:}
+\begin{itemize}
+    \item Ранг матрицы системы: \( r(A) = 3 \) (количество ненулевых строк)
+    \item Ранг расширенной матрицы: \( r(A|B) = 3 \)
+    \item Так как \( r(A) = r(A|B) = 3 \), система совместна (имеет единственное решение)
+    \item Число неизвестных \( n = 3 \)
+    \item Поскольку \( r(A) = n \), система определена (имеет единственное решение)
+\end{itemize}
+
+\textbf{Решение системы:}
+\[
+\begin{cases}
+2x + 2y - 2z = 0 \\
+-y + 4z = 4 \\
+- 2z = -10
+\end{cases}
+\]
+
+Из третьего уравнения: \(-2z = -10 \ \Rightarrow\ z = 5\)
+
+Из второго уравнения: \(-y + 4 \cdot 5 = 4 \ \Rightarrow\ y = 16\)
+
+Из первого уравнения: \(2x + 2 \cdot 16 - 2 \cdot 5 = 0 \ \Rightarrow\  x = -11\)
+
+\subsection*{Проверка}
+Подставим найденные значения в исходные уравнения:
+\[
+\begin{cases}
+4(-11) + 3 \cdot 16 = 4 \\
+2(-11) + 2 \cdot 16 - 2 \cdot 5 = 0 \\
+5(-11) + 3 \cdot 16 + 5 = -2
+\end{cases}
+\]
+Все равенства выполняются.
+
+\subsection*{Ответ}
+Система совместна и определена. Единственное решение:
+\[
+{x = -11,\quad y = 16,\quad z = 5}
+\]
+
+\end{document}
+
+\end{document}

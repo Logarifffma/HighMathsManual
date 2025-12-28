@@ -1,0 +1,228 @@
+\documentclass{article}[russian, english] 
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage[T2A]{fontenc}    
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+
+\newcommand{\RomanNumeralCaps}[1]
+    {\MakeUppercase{\romannumeral #1}}
+
+
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+\usepackage[skip=15pt plus1pt, indent=20pt]{parskip}
+\begin{document}
+
+\section*{Задача}
+
+Дана матрица
+\[
+A = 
+\begin{pmatrix}
+1 & 0 & 1 \\
+0 & 1 & 1 \\
+1 & 1 & 1
+\end{pmatrix}
+\]
+Найти обратную матрицу
+
+
+\subsection*{Решение}
+
+Способ 1:
+
+Формула:  
+\[
+A^{-1} = \frac{1}{\det A} \cdot \operatorname{adj} A,
+\]
+
+\[
+\det A = 1 \cdot (1 \cdot 1 - 1 \cdot 1) - 0 \cdot (0 \cdot 1 - 1 \cdot 1) + 1 \cdot (0 \cdot 1 - 1 \cdot 1)
+\]
+\[
+= 1 \cdot (1 - 1) - 0 + 1 \cdot (0 - 1)
+\]
+\[
+= 0 + 0 - 1 = -1
+\]
+\[
+\det A = -1 \neq 0 \quad\Rightarrow\quad \text{обратная существует}.
+\]
+
+$C_{11}$: \(M_{11} = 1\cdot 1 - 1\cdot 1 = 1-1=0\), \(C_{11} = 0\).
+
+$C_{12}$: \(M_{12} = 0\cdot 1 - 1\cdot 1 = -1\), \(C_{12} = (-1)^{1+2}(-1) = (-1)(-1) = 1\).
+
+$C_{13}$: \(M_{13} = 0\cdot 1 - 1\cdot 1 = -1\), \(C_{13} = (-1)^{1+3}(-1) = (1)(-1) = -1\).
+
+$C_{21}$: \(M_{21} = 0\cdot 1 - 1\cdot 1 = -1\), \(C_{21} = (-1)^{2+1}(-1) = (-1)(-1) = 1\).
+
+$C_{22}$: \(M_{22} = 1\cdot 1 - 1\cdot 1 = 0\), \(C_{22} = 0\).
+
+$C_{23}$: \(M_{23} = 1\cdot 1 - 0\cdot 1 = 1\), \(C_{23} = (-1)^{2+3} \cdot 1 = (-1) \cdot 1 = -1\).
+
+$C_{31}$: \(M_{31} = 0\cdot 1 - 1\cdot 1 = -1\), \(C_{31} = (-1)^{3+1}(-1) = 1\cdot (-1) = -1\).
+
+$C_{32}$: \(M_{32} = 1\cdot 1 - 0\cdot 1 = 1\), \(C_{32} = (-1)^{3+2} \cdot 1 = (-1)\cdot 1 = -1\).
+
+$C_{33}$: \(M_{33} = 1\cdot 1 - 0\cdot 0 = 1\), \(C_{33} = (-1)^{3+3} \cdot 1 = 1\).
+
+Матрица алгебраических дополнений:
+\[
+C = \begin{pmatrix}
+0 & 1 & -1 \\
+1 & 0 & -1 \\
+-1 & -1 & 1
+\end{pmatrix}
+\]
+
+Присоединённая:
+\[
+adj(A) = C^T = \begin{pmatrix}
+0 & 1 & -1 \\
+1 & 0 & -1 \\
+-1 & -1 & 1
+\end{pmatrix}^T
+= \begin{pmatrix}
+0 & 1 & -1 \\
+1 & 0 & -1 \\
+-1 & -1 & 1
+\end{pmatrix}
+\]
+
+
+Обратная матрица
+\[
+A^{-1} = \frac{1}{-1} \cdot \begin{pmatrix}
+0 & 1 & -1 \\
+1 & 0 & -1 \\
+-1 & -1 & 1
+\end{pmatrix}
+= \begin{pmatrix}
+0 & -1 & 1 \\
+-1 & 0 & 1 \\
+1 & 1 & -1
+\end{pmatrix}
+\]
+Способ 2:
+
+1) Пишем расширенную матрицу \([A | E]\):
+\[
+\left(
+\begin{array}{ccc|ccc}
+1 & 0 & 1 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 & 1 & 0 \\
+1 & 1 & 1 & 0 & 0 & 1
+\end{array}
+\right)
+\]
+2) Из третьей строки вычтем первую: \(R_3\rightarrow R_3 - R_1\):
+\[
+\left(
+\begin{array}{ccc|ccc}
+1 & 0 & 1 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 & 1 & 0 \\
+0 & 1 & 0 & -1 & 0 & 1
+\end{array}
+\right)
+\]
+2) Из третьей строки вычтем вторую: \(R_3 \rightarrow R_3 - R_2\):
+\[
+\left(
+\begin{array}{ccc|ccc}
+1 & 0 & 1 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 & 1 & 0 \\
+0 & 0 & -1 & -1 & -1 & 1
+\end{array}
+\right)
+\]
+
+3) Умножим третью строку на \(-1\):
+\[
+\left(
+\begin{array}{ccc|ccc}
+1 & 0 & 1 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 & 1 & 0 \\
+0 & 0 & 1 & 1 & 1 & -1
+\end{array}
+\right)
+\]
+
+4) \(R_1 \rightarrow R_1 - R_3\) (чтоб убрать 1 в (1,3)):
+\[
+\left(
+\begin{array}{ccc|ccc}
+1 & 0 & 0 & 0 & -1 & 1 \\
+0 & 1 & 1 & 0 & 1 & 0 \\
+0 & 0 & 1 & 1 & 1 & -1
+\end{array}
+\right)
+\]
+
+5) \(R_2 \rightarrow R_2 - R_3\):
+\[
+\left(
+\begin{array}{ccc|ccc}
+1 & 0 & 0 & 0 & -1 & 1 \\
+0 & 1 & 0 & -1 & 0 & 1 \\
+0 & 0 & 1 & 1 & 1 & -1
+\end{array}
+\right)
+\]
+
+Получили \([E | A^{-1}]\), где
+\[
+A^{-1} = \begin{pmatrix}
+0 & -1 & 1 \\
+-1 & 0 & 1 \\
+1 & 1 & -1
+\end{pmatrix}
+\]
+
+Ответ:
+\[
+\boxed{
+A^{-1} = \begin{pmatrix}
+0 & -1 & 1 \\
+-1 & 0 & 1 \\
+1 & 1 & -1
+\end{pmatrix}
+}
+\]
+\end{document}
