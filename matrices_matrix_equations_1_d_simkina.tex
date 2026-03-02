@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage{graphicx}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{tikz}
+\usepackage{amscd}
+\usepackage[inline]{enumitem}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{epigraph}
+\usepackage{icomma}
+\begin{document}
+\section*{Задача}
+Даны матрицы:
+
+A = \begin{pmatrix}
+2 & 1 \\
+-4 & -3
+\end{pmatrix}, \quad
+B = \begin{pmatrix}
+2 & 2 \\
+6 & 4
+\end{pmatrix} 
+Решить матричное уравнение:
+
+X A = B\\
+Сначала нахожу обратную матрицу $A$, т.е. $A^{-1}$
+
+Уравнение $XA = B$. Умножаю обе части на $A^{-1}$ 
+$$X A A^{-1} = B A^{-1}$$
+$$X E = B A^{-1}$$
+$$X = B A^{-1}$$
+
+Нахожу обратное значение $A$ ($A^{-1}$)
+
+Пишу матрицу $[A | E]$, где $E$ это единичная матрица $2 \times 2$ 
+$$[A | E] = \left[ \begin{array}{cc|cc} 2 & 1 & 1 & 0 \\ -4 & -3 & 0 & 1 \end{array} \right]$$
+
+$R_1 \rightarrow \frac{1}{2}R_1$
+$$\left[ \begin{array}{cc|cc} 1 & \frac{1}{2} & \frac{1}{2} & 0 \\ -4 & -3 & 0 & 1 \end{array} \right]$$
+
+$R_2 \rightarrow R_2 + 4R_1$
+$$R_2 + 4R_1 = \begin{pmatrix} -4+4(1) & -3+4(\frac{1}{2}) & 0+4(\frac{1}{2}) & 1+4(0) \end{pmatrix}$$
+$$R_2 + 4R_1 = \begin{pmatrix} 0 & -3+2 & 0+2 & 1+0 \end{pmatrix}$$
+$$R_2 + 4R_1 = \begin{pmatrix} 0 & -1 & 2 & 1 \end{pmatrix}$$
+
+$$\left[ \begin{array}{cc|cc} 1 & \frac{1}{2} & \frac{1}{2} & 0 \\ 0 & -1 & 2 & 1 \end{array} \right]$$
+
+Умножаю вторую строку на -1 ($R_2 \rightarrow -1R_2$)
+$$\left[ \begin{array}{cc|cc} 1 & \frac{1}{2} & \frac{1}{2} & 0 \\ 0 & 1 & -2 & -1 \end{array} \right]$$
+
+Умножаю первую строку на $\frac{1}{2}$ ($R_1 \rightarrow R_1 - \frac{1}{2}R_2$)
+$$R_1 - \frac{1}{2}R_2 = \begin{pmatrix} 1-\frac{1}{2}(0) & \frac{1}{2}-\frac{1}{2}(1) & \frac{1}{2}-\frac{1}{2}(-2) & 0-\frac{1}{2}(-1) \end{pmatrix}$$
+$$R_1 - \frac{1}{2}R_2 = \begin{pmatrix} 1 & 0 & \frac{1}{2}+1 & 0+\frac{1}{2} \end{pmatrix}$$
+$$R_1 - \frac{1}{2}R_2 = \begin{pmatrix} 1 & 0 & \frac{3}{2} & \frac{1}{2} \end{pmatrix}$$
+
+Итоговая расширенная матрица:
+$$\left[ \begin{array}{cc|cc} 1 & 0 & \frac{3}{2} & \frac{1}{2} \\ 0 & 1 & -2 & -1 \end{array} \right]$$
+
+Обратная матрица $A^{-1}$:
+$$A^{-1} = \begin{pmatrix} \frac{3}{2} & \frac{1}{2} \\ -2 & -1 \end{pmatrix}$$
+
+$X = B A^{-1}$
+
+Умножаю матрицу $B$ на  $A^{-1}$, чтобы найти $X$
+$$X = \begin{pmatrix} 2 & 2 \\ 6 & 4 \end{pmatrix} \begin{pmatrix} \frac{3}{2} & \frac{1}{2} \\ -2 & -1 \end{pmatrix}$$
+
+$$x_{11} = (2)(\frac{3}{2}) + (2)(-2) = 3 - 4 = -1$$
+$$x_{12} = (2)(\frac{1}{2}) + (2)(-1) = 1 - 2 = -1$$
+$$x_{21} = (6)(\frac{3}{2}) + (4)(-2) = 9 - 8 = 1$$
+$$x_{22} = (6)(\frac{1}{2}) + (4)(-1) = 3 - 4 = -1$$
+
+Матрица $X$:
+$$X = \begin{pmatrix} -1 & -1 \\ 1 & -1 \end{pmatrix}$$
+\maketitle
+
+
+\end{document}
